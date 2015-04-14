@@ -4,7 +4,8 @@ import sys
 from apicem_config import * # APIC-EM IP is assigned in apicem_config.py
                                     
 requests.packages.urllib3.disable_warnings()  # remove this line if not using Python 3 
-app_name = "Unsafe_app"
+
+app_name = "Unsafe_app" # Change "Unsafe_app" to your own application name
 
 r_json = {
     "category": "internet-security", 

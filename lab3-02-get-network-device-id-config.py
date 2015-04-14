@@ -23,22 +23,22 @@ if count > 0 :
 else:
     print ("No network device found !")
     sys.exit(1)
-    
+
 # find out network device id for network device with IP
-id = ""
-for item in device_list:
-    if item[2] == device_ip:
-        id = item[3]
-# index 3 is for device id
-# get ACL for  network device with IP 40.0.1.6
 if device_ip != "":
+    id = ""
+    for item in device_list:
+        if item[2] == device_ip:
+            id = item[3]   
+    # index 2 is for IP and index 3 is for id
+    # get IOS configuration for  network device with IP 10.10.40.253
     if id != "":
-        url = "https://"+apicem_ip+"/api/v0/acl/device/"+id
+        url =  "https://"+apicem_ip+"/api/v0/network-device/"+id+"/config"
         resp= requests.get(url,verify=False)
         response_json = resp.json()
-        print ("Status: ",resp.status_code)
-        print (json.dumps(response_json["response"],indent = 4))
+        # replace "\r\n" to "\n" to remove extra space live (Carriage Return)
+        print (response_json["response"].replace("\r\n","\n"))
     else:
-        print("No device was found for IP " + device_ip) 
+        print("No device was found for IP " + device_ip)       
 else:
     print("IP address was not specified.  Please add IP address.")

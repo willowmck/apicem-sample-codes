@@ -63,11 +63,14 @@ if count > 0:
            id = item[5]
     # 0 is the index of policy name, delete what we just created
     # 5 is the index of policy id '''
-
-    # code  for deleting policy
-    url = "https://"+apicem_ip+"/api/v0/policy/"+id
-    resp= requests.delete(url,verify=False)
-    print (resp.status_code)
-    print (resp.text)
+    if id != "":
+        # code  for deleting policy
+        print("Attempting to delete policy: " + to_delete)
+        url = "https://"+apicem_ip+"/api/v0/policy/"+id
+        resp= requests.delete(url,verify=False)
+        print (resp.status_code)
+        print (resp.text)
+    else:
+        print ("Policy " + "'" + to_delete + "'" + " does not exist.")
 else:
     print ("No Policy Found!")

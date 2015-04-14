@@ -4,7 +4,7 @@ from apicem_config import *    # APIC-EM IP is assigned in apicem_config.py
 
 requests.packages.urllib3.disable_warnings()    # Remove this line if not using Python 3
 
-url = "https://"+apicem_ip+"/api/v0/network-device/location"
+url = "https://"+apicem_ip+"/api/v0/location"
 
 resp= requests.get(url,verify=False)
 response_json = resp.json()
