@@ -11,4 +11,4 @@ response_json = api_response.json()
 for item in response_json["response"]:
     ip_list.append(item["hostIp"])
 ip_list.sort()  
-# print (ip_list)
+print (ip_list)

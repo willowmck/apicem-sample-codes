@@ -43,7 +43,7 @@ if lcount > 0:
     location_list = sorted(l_list, key=itemgetter('location_name'))
     r_json = {
         "id": device_list[3][3], 
-        "location": location_list[1]["location_id"]
+        "location": location_list[1]["location_id"] # Change location
     }    
     # Selected a network device and location in the list
     print ("Selected network device id is: ", device_list[3][3])
