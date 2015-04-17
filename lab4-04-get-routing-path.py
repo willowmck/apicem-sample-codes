@@ -12,5 +12,5 @@ url = "https://"+apicem_ip+"/api/v0/routing-path/"+src+"/"+dest
 r = requests.get(url,verify=False)
 response_json = r.json()
 print ("Status: ",r.status_code)
-
 print (json.dumps(response_json,indent=4))
+print ("If you don't see the destination host shows up in node section that means there is no route from src to dest")
