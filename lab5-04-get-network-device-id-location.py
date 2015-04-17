@@ -12,12 +12,14 @@ url = "https://"+apicem_ip+"/api/v0/network-device/count"   # API base url
 resp= requests.get(url,verify=False)     # The response (result) from "GET /network-device/count" query
 response_json = resp.json() # Get the json-encoded content from response with "response_json = resp.json()
 count = response_json["response"]    # Total count of network-device and convert it to string
+print (count," network device found")
 
 if count > 0 :
     device_list = []
     url = "https://"+apicem_ip+"/api/v0/network-device/1/"+str(count)  # API base url, convert 'count' to string
     resp= requests.get(url,verify=False) # The response (result) from "GET /network-device/{startIndex}/{recordsToReturn}" query
     response_json = resp.json() # Get the json-encoded content from response
+    # print (response_json["response"])
     for item in response_json["response"]:
         device_list.append([item["hostname"],item["type"],item["managementIpAddress"],item["id"]])
     device_list.sort()
@@ -26,8 +28,8 @@ else:
 
 # Assuming the first network device in list is used
 # First find out if this network device has been assigned a location
-print ("Assuming the first network device in list is used:",device_list[3][3])
-url = "https://"+apicem_ip+"/api/v0/network-device/"+device_list[3][3]+"/location"
+print ("Assuming the first network device in list is used:",device_list[0][3])
+url = "https://"+apicem_ip+"/api/v0/network-device/"+device_list[0][3]+"/location"
 r= requests.get(url,verify=False)
 response_json = r.json()
 

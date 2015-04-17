@@ -10,4 +10,8 @@ resp= requests.get(url,verify=False)
 response_json = resp.json()
 
 print ("Status: ",resp.status_code)
-print (json.dumps(response_json["response"],indent = 4))
+locations = json.dumps(response_json["response"],indent = 4)
+print (locations)
+print
+if locations == "[]":
+    print ("No location is configured")

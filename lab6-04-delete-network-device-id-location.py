@@ -7,6 +7,13 @@ from apicem_config import *    # APIC-EM IP is assigned in apicem_config.py
 requests.packages.urllib3.disable_warnings()    # Remove this line if not using Python 3
 
 
+# *****************************************
+# IP of the network device that we want to remove the location
+# You need to assigned ip here or create some codes to select ip
+to_delete = ""
+# *****************************************
+
+
 device_list = []
 
 # create device id list
@@ -30,20 +37,13 @@ if count > 0 :
 else:
     print ("No network device found !")
     sys.exit(1)
-print ("--- Device name and it's IP for the reference. You can select a ip to delete location ---")  
-for item in device_list:
-    print ("IP: "+item[2]+" -- Location Name: "+item[4])
-print ()
-
-
-# *****************************************
-# IP of the network device that we want to remove the location
-# You need to assigned ip here or create some codes to select ip
-to_delete = ""
-# *****************************************
 
 if to_delete == "":
-   print ("Have you assigned a network IP address?")
+   print ("--- Device IP and location assigned for the reference. You can select a ip to delete location ---")  
+   for item in device_list:
+       print ("IP: "+item[2]+" -- Location Name: "+item[4])
+   print ()
+   print ("Have you assigned a network IP address for deleting location?")
    sys.exit(1)
    
 # Check if selected network device has been assigned a location. Proceed if yes, do nothing if no
