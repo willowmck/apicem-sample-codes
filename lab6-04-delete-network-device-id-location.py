@@ -10,7 +10,7 @@ requests.packages.urllib3.disable_warnings()    # Remove this line if not using 
 # *****************************************
 # IP of the network device that we want to remove the location
 # You need to assigned ip here or create some codes to select ip
-to_delete = ""
+to_delete = None
 # *****************************************
 
 
@@ -33,12 +33,12 @@ if count > 0 :
         else:
             item["locationName"] = ''
         device_list.append([item["hostname"],item["type"],item["managementIpAddress"],item["id"],item["locationName"]])
-    device_list.sort()                         
+    device_list.sort()
 else:
     print ("No network device found !")
     sys.exit(1)
 
-if to_delete == "":
+if to_delete == None:
    print ("--- Device IP and location assigned for the reference. You can select a ip to delete location ---")  
    for item in device_list:
        print ("IP: "+item[2]+" -- Location Name: "+item[4])
@@ -52,12 +52,12 @@ for item in device_list:
     if item[2] == to_delete:
         if item[4] != '':
             id = item[3]
-            print ("Location %s will be deleted from this network device" % (item[4]))
+            print ("Location %s will be deleted from this network device" % (item[4]),to_delete)
             url = "https://"+apicem_ip+"/api/v0/network-device/"+id+"/location"
             resp= requests.delete(url,verify=False)
             print ("Status:",resp.status_code)
             print (resp.text)           
-        else:      
-            print ("No location is assigned to this network device, nothing to delete !")
+        else:
+            print ("No location is assigned to this network device",to_delete,", nothing to delete !")
         sys.exit(1)
 print ("Cannot find network device with this IP: ",to_delete)
