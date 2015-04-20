@@ -1,4 +1,4 @@
-import requests   # We use Python "requests" module to do HTTP GET query 
+import requests   # We use Python "requests" module to do HTTP GET query
 import json       # Import JSON encoder and decode module
 import sys
 from apicem_config import *    # APIC-EM IP is assigned in apicem_config.py
