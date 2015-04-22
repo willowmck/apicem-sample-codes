@@ -5,8 +5,8 @@ requests.packages.urllib3.disable_warnings()    # Remove this line if not using 
 
 
 # need to change source and destination IP to the one you like to trace
-src = "10.10.30.100"
-dest = "10.10.30.130"
+src = "40.0.0.14"
+dest = "40.0.0.15"
 url = "https://"+apicem_ip+"/api/v0/routing-path/"+src+"/"+dest
 
 r = requests.get(url,verify=False)

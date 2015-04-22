@@ -21,12 +21,14 @@ response_json = resp.json()
 for item in response_json["response"]:
     l_list.append({"location_id":item["id"],"location_name":item["locationName"]})
 # Sorting the list of dictionary
-
+print ("Location list:\n")
 location_list = sorted(l_list, key=itemgetter('location_name'))
-print (location_list)           
+print (location_list)
+print ()
 # Assuming the first id in list is used
 
-# print ("Query location: ",location_list[0]["location_name"])
+print ("The following is/are Network device(s) in this location: ",location_list[0]["location_name"])
+print ()
 try:
     url = "https://"+apicem_ip+"/api/v0/location/"+location_list[0]["location_id"]+"/network-device/"
     r= requests.get(url,verify=False)

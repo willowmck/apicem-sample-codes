@@ -10,7 +10,7 @@ requests.packages.urllib3.disable_warnings()    # Remove this line if not using 
 # *****************************************
 # IP of the network device that we want to remove the location
 # You need to assigned ip here or create some codes to select ip
-# for example to_delete = "10.10.10.10"
+# for example to_delete = "40.0.1.2"
 to_delete = None
 # *****************************************
 
