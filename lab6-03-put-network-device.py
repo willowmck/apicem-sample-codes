@@ -41,13 +41,24 @@ if lcount > 0:
         l_list.append({"location_id":item["id"],"location_name":item["locationName"]})
    # Sorting the list of dictionary
     location_list = sorted(l_list, key=itemgetter('location_name'))
-    r_json = {
-        "id": device_list[3][3], 
-        "location": location_list[1]["location_id"] # Change location
-    }    
+    try:
+        tmp = device_list[3][3]
+        try :
+            tmp1 =location_list[1]["location_id"]
+            r_json = {
+                   "id": device_list[3][3], 
+                   "location": location_list[1]["location_id"] # Change location
+            }
+        except IndexError:
+            print ("Location id doesn't exist")
+            sys.exit(1)
+    except:
+        print ("Device id doesn't exist")
+        sys.exit(1)       
+
     # Selected a network device and location in the list
-    print ("Selected network device id is: ", device_list[3][3])
-    print ("Selected location name : %s and location id : %s" % (location_list[1]["location_name"],location_list[1]["location_id"]))
+    print ("Selected network device is: ", device_list[3][0],"IP:",device_list[3][2])
+    print ("Selected location name to change is : %s and location id : %s" % (location_list[1]["location_name"],location_list[1]["location_id"]))
 
     put_url = "https://"+apicem_ip+"/api/v0/network-device"
     headers = {'content-type': 'application/json'}

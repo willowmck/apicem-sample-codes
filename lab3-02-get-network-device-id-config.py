@@ -31,7 +31,7 @@ if device_ip != "":
         if item[2] == device_ip:
             id = item[3]   
     # index 2 is for IP and index 3 is for id
-    # get IOS configuration for  network device with IP 10.10.40.253
+    # get IOS configuration for  network device with IP 40.0.1.6
     if id != "":
         url =  "https://"+apicem_ip+"/api/v0/network-device/"+id+"/config"
         resp= requests.get(url,verify=False)

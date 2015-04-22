@@ -1,4 +1,4 @@
-import requests   # We use Python "requests" module to do HTTP GET query 
+import requests   # We use Python "requests" module to do HTTP GET query
 import json       # Import JSON encoder and decode module
 import sys
 from apicem_config import *    # APIC-EM IP is assigned in apicem_config.py
@@ -8,7 +8,7 @@ requests.packages.urllib3.disable_warnings()    # Remove this line if not using 
 # *****************************************
 # Name of the application to be deleted
 # You need to assign name here
-to_delete = ""
+to_delete = "Unsafe_app"
 # *****************************************
 
 if to_delete == "":
@@ -21,7 +21,8 @@ resp= requests.get(url,verify=False)
 response_json = resp.json()
 
 app_id=""
-try: app_id = response_json["response"]["id"]
+try:
+   app_id = response_json["response"]["id"]
 except KeyError: print ("Application not found: " + to_delete)
 if app_id != "":
     del_url = "https://"+apicem_ip+"/api/v0/application/"+app_id

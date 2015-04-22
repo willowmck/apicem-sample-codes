@@ -37,9 +37,9 @@ if ip_list[2] != "":
 
 json_obj["policyName"] = 'NoAccess_'+''.join(random.choice(string.ascii_uppercase + string.digits) for n in range(4))
 
-print ("******* This is the policy name that will be used to create policy ********")
+print ("********* This is the policy name will be used to create policy **********")
 print (json_obj["policyName"])
-print ("***************************************************************************")
+print ("**************************************************************************")
 
 # For POST we need to provide content type which is JSON that APIC-EM is using
 headers = {'content-type': 'application/json'}

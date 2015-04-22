@@ -42,13 +42,22 @@ if lcount > 0:
     location_list = sorted(l_list, key=itemgetter('location_name'))
 
     # Selected a network device and location in the list '''
-    print ("Selected network device id is: ", device_list[3][3])
+    print ("Selected network device is: ", device_list[3][0],"IP:",device_list[3][2])
     print ("Selected location name : %s and location id : %s" % (location_list[0]["location_name"],location_list[0]["location_id"]))
-
-    r_json = {
-        "id": device_list[3][3], 
-        "location": location_list[0]["location_id"]
-    }
+    try:
+        tmp = device_list[3][3]
+        try :
+            tmp1 =location_list[1]["location_id"]
+            r_json = {
+                   "id": device_list[3][3], 
+                   "location": location_list[0]["location_id"] 
+            }
+        except IndexError:
+            print ("Location id doesn't exist")
+            sys.exit(1)
+    except:
+        print ("Device id doesn't exist")
+        sys.exit(1)       
 
     post_url = "https://"+apicem_ip+"/api/v0/network-device/location"
     headers = {'content-type': 'application/json'}
